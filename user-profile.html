@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Green Energy Trading</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-user-circle"></i> User Profile</h1>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-outline"><i class="fas fa-home"></i> Home</a>
+                <a href="cart.html" class="btn btn-outline"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="notification.html" class="btn btn-outline"><i class="fas fa-bell"></i> Notifications</a>
+                <a href="track-order.html" class="btn btn-outline"><i class="fas fa-truck"></i> Track Orders</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container profile-section">
+            <!-- Login/Signup Form (shown when not logged in) -->
+            <div id="auth-container" class="auth-container animate-fade-in" style="display: none;">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2 id="authTitle">Login to Your Account</h2>
+                        <p>Welcome back to Green Energy Trading</p>
+                    </div>
+                    
+                    <form class="auth-form" id="authForm">
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group" id="nameGroup" style="display: none;">
+                            <label for="userName">Full Name</label>
+                            <input type="text" id="userName" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" id="userPassword" class="form-control" placeholder="Enter your password">
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" style="width: 100%; padding: 12px;" id="authButton" onclick="handleAuth()">Login</button>
+                    </form>
+                    
+                    <div class="auth-links">
+                        <p id="switchAuthText">Don't have an account? <a href="#" onclick="switchAuthMode()">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Content (shown when logged in) -->
+            <div id="profile-container" style="display: none;">
+                <div class="profile-header animate-fade-in">
+                    <div class="profile-avatar" id="profileInitials">
+                        <!-- User initials will be displayed here -->
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileName">John Doe</h2>
+                        <p class="profile-email" id="profileEmail">john.doe@example.com</p>
+                    </div>
+                </div>
+                
+                <div class="profile-menu animate-fade-in">
+                    <div class="profile-menu-item" onclick="navigateTo('track-order.html')">
+                        <div class="menu-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="profile-menu-title">My Orders</div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <div class="profile-menu-item" onclick="viewSavedAddresses()">
+                        <div class="menu-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="profile-menu-title">Saved Addresses</div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <div class="profile-menu-item" onclick="viewPaymentMethods()">
+                        <div class="menu-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="profile-menu-title">Payment Methods</div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <div class="profile-menu-item" onclick="navigateTo('notification.html')">
+                        <div class="menu-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="profile-menu-title">Notifications</div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <div class="profile-menu-item" onclick="logout()">
+                        <div class="menu-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="profile-menu-title">Logout</div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="solar.html">Solar Electricity</a></li>
+                    <li><a href="wind.html">Wind Electricity</a></li>
+                    <li><a href="#">Become a Seller</a></li>
+                    <li><a href="#">Business Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help & Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Payment Options</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Green Energy Trading. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let isSignUp = false;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        
+        // Function to initialize profile page
+        function initializeProfile() {
+            const authContainer = document.getElementById('auth-container');
+            const profileContainer = document.getElementById('profile-container');
+            
+            if (currentUser) {
+                // User is logged in, show profile
+                authContainer.style.display = 'none';
+                profileContainer.style.display = 'block';
+                
+                // Update profile information
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                
+                // Set profile initials
+                const initials = getInitials(currentUser.name);
+                document.getElementById('profileInitials').textContent = initials;
+            } else {
+                // User is not logged in, show login form
+                authContainer.style.display = 'block';
+                profileContainer.style.display = 'none';
+            }
+        }
+        
+        // Function to get initials from name
+        function getInitials(name) {
+            return name
+                .split(' ')
+                .map(part => part.charAt(0))
+                .join('')
+                .toUpperCase();
+        }
+        
+        // Function to switch between login and signup
+        function switchAuthMode() {
+            isSignUp = !isSignUp;
+            const authTitle = document.getElementById('authTitle');
+            const authButton = document.getElementById('authButton');
+            const switchAuthText = document.getElementById('switchAuthText');
+            const nameGroup = document.getElementById('nameGroup');
+            
+            if (isSignUp) {
+                authTitle.textContent = 'Create an Account';
+                authButton.textContent = 'Sign Up';
+                switchAuthText.innerHTML = 'Already have an account? <a href="#" onclick="switchAuthMode()">Login</a>';
+                nameGroup.style.display = 'block';
+            } else {
+                authTitle.textContent = 'Login to Your Account';
+                authButton.textContent = 'Login';
+                switchAuthText.innerHTML = 'Don\'t have an account? <a href="#" onclick="switchAuthMode()">Sign Up</a>';
+                nameGroup.style.display = 'none';
+            }
+        }
+        
+        // Function to handle authentication (login/signup)
+        function handleAuth() {
+            const email = document.getElementById('userEmail').value.trim();
+            const password = document.getElementById('userPassword').value.trim();
+            
+            if (!email || !password) {
+                alert('Please enter both email and password.');
+                return;
+            }
+            
+            if (isSignUp) {
+                // Sign up process
+                const name = document.getElementById('userName').value.trim();
+                
+                if (!name) {
+                    alert('Please enter your name.');
+                    return;
+                }
+                
+                // Check if email already exists
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const existingUser = users.find(user => user.email === email);
+                
+                if (existingUser) {
+                    alert('This email is already registered. Please login instead.');
+                    return;
+                }
+                
+                // Create new user
+                const newUser = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    password: password // In a real app, this should be hashed
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Log in the new user
+                currentUser = {
+                    id: newUser.id,
+                    name: newUser.name,
+                    email: newUser.email
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Show success message
+                alert('Account created successfully! You are now logged in.');
+                
+                // Initialize profile with new user
+                initializeProfile();
+            } else {
+                // Login process
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(user => user.email === email && user.password === password);
+                
+                if (!user) {
+                    alert('Invalid email or password. Please try again.');
+                    return;
+                }
+                
+                // Set current user
+                currentUser = {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Initialize profile with logged in user
+                initializeProfile();
+            }
+        }
+        
+        // Function to logout
+        function logout() {
+            localStorage.removeItem('currentUser');
+            currentUser = null;
+            initializeProfile();
+        }
+        
+        // Function to navigate to a page
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+        
+        // Function to view saved addresses (placeholder for now)
+        function viewSavedAddresses() {
+            alert('Saved addresses feature will be available soon.');
+        }
+        
+        // Function to view payment methods (placeholder for now)
+        function viewPaymentMethods() {
+            alert('Payment methods feature will be available soon.');
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if users array exists in localStorage, create if not
+            if (!localStorage.getItem('users')) {
+                // Create some demo users
+                const demoUsers = [
+                    {
+                        id: 1,
+                        name: 'John Doe',
+                        email: 'john@example.com',
+                        password: 'password123'
+                    },
+                    {
+                        id: 2,
+                        name: 'Jane Smith',
+                        email: 'jane@example.com',
+                        password: 'password123'
+                    }
+                ];
+                
+                localStorage.setItem('users', JSON.stringify(demoUsers));
+            }
+            
+            initializeProfile();
+            
+            // Initialize animation for elements
+            const animateElements = document.querySelectorAll('.animate-fade-in');
+            
+            function checkScroll() {
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Initialize elements
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Check on load and scroll
+            window.addEventListener('load', checkScroll);
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
